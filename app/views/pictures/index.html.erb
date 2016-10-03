@@ -8,11 +8,12 @@
       <th>Comment</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  </thead><%= image_tag("/uploads/picture/avatar/3/menu-thumbnail2.jpg") %>
 
   <tbody>
     <% @pictures.each do |picture| %>
       <tr>
+        <td><%= image_tag("#{picture.avatar}") %></td>
         <td><%= picture.comment %></td>
         <td><%= link_to 'Show', picture %></td>
         <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
