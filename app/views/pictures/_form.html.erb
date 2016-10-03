@@ -15,6 +15,13 @@
     <%= f.label :comment %><br>
     <%= f.text_field :comment %>
   </div>
+  <div class="field">
+    <% if @picture.avatar %>
+      <%= image_tag("#{@picture.avatar}") %>
+    <% end %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
