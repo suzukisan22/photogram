@@ -16,16 +16,31 @@ header {
   #top_icon {
     width: 25%;
     clear: both;
+    color: #666;
     #top_camera {
       margin-top: 20px;
       border-right: 3px solid #e3e3e3;
     }
-    h1 {
-    }
   }
-  h1 {
+  #top_icon:hover {
+    text-decoration: none;
+    background : none;
+    color: #666;
+  }
+  h3 {
     margin-top: 0;
     padding-top: 20px
+  }
+  .nav {
+    margin-top: 20px;
+    .last {
+      margin-top: -20px;
+    }
+  }
+  .nav>li>a:hover {
+    text-decoration: none;
+    background : none;
+    color: #666;
   }
 }
 
@@ -51,3 +66,20 @@ header {
     margin: 0 auto;
   }
 }
+/*
+<nav class="pull-right nav-bar nav row">
+<% if user_signed_in? %>
+　<li class="col-sm-4">
+    <%= link_to edit_user_registration_path do %>
+      <%= fa_icon "user", class: "fa-2x" %>
+    <% end %>
+  </li>
+  <li class="col-sm-4">
+    <%= link_to '写真を投稿する', new_picture_path %>
+  </li>
+  <li class="last col-sm-4"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li><%= link_to 'ログイン', new_user_session_path  %></li>
+  <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+<% end %>
+</nav>*/
