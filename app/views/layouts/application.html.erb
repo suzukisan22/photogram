@@ -7,13 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if user_signed_in? %>
-    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to 'ログイン', new_user_session_path  %></li>
-    <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-  <% end %>
-<%= yield %>
-
+<div class="wrapper">
+<header>
+  <div class="container">
+    <div class="row">
+      <%= link_to root_path, id: "top_icon", class: "pull-left row" do %>
+        <%= fa_icon "camera-retro", id: "top_camera", class: "fa-2x col-xs-6 text-right" %>
+        <h3 class="col-xs-6 text-left">Photogram</h3>
+      <% end %>
+      <nav class="pull-right">
+      <% if user_signed_in? %>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path  %></li>
+        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+      <% end %>
+      </nav>
+    </div>
+  </div>
+</header>
+  <%= yield %>
+</div>
 </body>
 </html>

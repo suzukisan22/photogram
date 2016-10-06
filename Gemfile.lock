@@ -291,6 +291,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener_web

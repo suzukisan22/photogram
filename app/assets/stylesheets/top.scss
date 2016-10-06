@@ -1,3 +1,53 @@
-// Place all the styles related to the top controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+li {
+  list-style-type: none;
+}
+
+body {
+  height: 1000px;
+  overflow: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  #top_icon {
+    width: 25%;
+    clear: both;
+    #top_camera {
+      margin-top: 20px;
+      border-right: 3px solid #e3e3e3;
+    }
+    h1 {
+    }
+  }
+  h1 {
+    margin-top: 0;
+    padding-top: 20px
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-top: -10px;
+  background-image: image-url("top/top_01.jpg");
+  background-size:cover;
+  text-align: center;
+}
+
+.flash {
+  padding-top: 150px;
+}
+
+.album {
+  padding-top: 100px;
+  text-align: center;
+  h1 {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

@@ -14,7 +14,6 @@
       <tr>
         <td><%= image_tag("#{picture.avatar}") %></td>
         <td><%= picture.comment %></td>
-        <td><%= link_to 'Show', picture %></td>
         <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
         <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
