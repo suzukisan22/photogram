@@ -42,12 +42,16 @@
               <li><%= link_to 'サインアップ', new_user_registration_path %></li>
             <% end %>
           </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-</header>
+       </div><!-- /.navbar-collapse -->
+     </div><!-- /.container-fluid -->
+   </nav>
+ </header>
 <div class="mt250">
-  <%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 </div>
+<footer>
+</footer>
 </body>
 </html>

@@ -2,11 +2,6 @@ li {
   list-style-type: none;
 }
 
-body#top-body {
-  height: 1000px;
-  overflow: hidden;
-}
-
 body {
   background-color: #f3f3f3;
 }
@@ -50,6 +45,13 @@ header {
     background-color: transparent;
     border: none;
   }
+}
+
+/* top */
+
+body#top-body {
+  height: 1000px;
+  overflow: hidden;
 }
 
 .all-container {
@@ -154,6 +156,31 @@ header {
 .outh-twitter:hover {
   opacity: 0.8;
   text-decoration: none;
+}
+
+/* pictures */
+
+.pic-area {
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border: 2px solid #efefef;
+  .pic-user-name,
+  .pic-comment-area,
+  .pic-action-area {
+    padding: 10px;
+  }
+  .pic-photo-area img {
+    width: 100%;
+    border: 1px solid #efefef;
+  }
+
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media screen and ( max-width:767px )
