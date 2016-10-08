@@ -1,25 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<div class="col-xs-8 col-xs-offset-2">
-  <% @pictures.each do |picture| %>
-    <div class="pic-area">
-      <div class="pic-user-name">
-        <% @users.each do |user| %>
-          <% if user.id == picture.user_id %>
-            <p><%= user.name %></p>
-          <% end %>
+<% @pictures.each do |picture| %>
+  <div class="pic-area">
+    <div class="pic-user-name">
+      <% @users.each do |user| %>
+        <% if user.id == picture.user_id %>
+          <p><%= user.name %></p>
         <% end %>
-      </div>
-      <div class="pic-photo-area">
-        <%= image_tag("#{picture.avatar}") %>
-      </div>
-      <div class="pic-comment-area">
-        <%= picture.comment %>
-      </div>
-      <div class="pic-action-area">
-        <%= link_to 'Edit', edit_picture_path(picture) %>
-        <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+    <div class="pic-photo-area">
+      <%= image_tag("#{picture.avatar}") %>
+    </div>
+    <div class="pic-comment-area">
+      <%= picture.comment %>
+    </div>
+    <div class="pic-action-area">
+      <%= link_to 'Edit', edit_picture_path(picture) %>
+      <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>

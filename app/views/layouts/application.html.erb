@@ -17,22 +17,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to root_path, id: "top_icon", class: "pull-left row" do %>
-            <%= fa_icon "camera-retro", id: "top_camera", class: "fa-2x col-xs-6 text-right" %>
-            <h3 class="col-xs-6 text-left">Photogram</h3>
+          <%= link_to root_path, id: "top_icon", class: "pull-left row to-home" do %>
+            <%= fa_icon "camera-retro", id: "top_camera", class: "fa-2x col-sm-3 col-xs-6 text-right" %>
+            <h3 class="col-sm-9 col-xs-6 text-left">Photogram</h3>
           <% end %>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">メニュー<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to '写真を投稿する', new_picture_path %></li>
               </ul>
             </li>
-            <% if user_signed_in? %>
               <li>
-                <%= link_to edit_user_registration_path do %>
+                <%= link_to edit_user_registration_path, alt: 'プロフィール編集' do %>
                   <%= fa_icon "user", class: "fa-2x" %>
                 <% end %>
               </li>
@@ -46,9 +46,13 @@
      </div><!-- /.container-fluid -->
    </nav>
  </header>
-<div class="mt250">
+<div class="margin-adjust">
   <div class="container">
-    <%= yield %>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 </div>
 <footer>

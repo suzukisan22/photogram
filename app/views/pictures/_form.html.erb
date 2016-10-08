@@ -1,18 +1,20 @@
 <%= form_for(@picture) do |f| %>
   <%= f.error_messages! %>
-
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_field :comment %>
-  </div>
   <div class="field">
     <% if @picture.avatar %>
-      <%= image_tag("#{@picture.avatar}") %>
+      <div class="form-photo">
+        <%= image_tag("#{@picture.avatar}") %>
+      </div>
     <% end %>
-    <%= f.file_field :avatar %>
+    <%= f.label :画像 %><br>
+    <%= f.file_field :avatar, class: 'form-control' %>
     <%= f.hidden_field :avatar_cache %>
   </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment, class: 'form-control', placeholder: 'キャプションを書く', rows: 4 %>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>

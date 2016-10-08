@@ -89,8 +89,8 @@ body#top-body {
   text-align: center;
 }
 
-.mt250 {
-  margin-top: 80px;
+.margin-adjust {
+  margin: 80px 0;
 }
 
 .oth-option {
@@ -183,6 +183,33 @@ footer {
   margin: 0 auto;
 }
 
+/* pictures/new */
+
+#form-title {
+  margin-bottom: 25px;
+}
+
+.back {
+  width: 100%;
+}
+
+/* pictures/_form */
+div.field {
+  margin-bottom: 15px;
+}
+
+.form-photo {
+  margin-bottom: 25px;
+  img {
+    width: 100%;
+  }
+}
+
+.cl-account {
+  margin: 40px 0 25px;
+  text-align: center;
+}
+
 @media screen and ( max-width:767px )
 {
   header {
@@ -191,7 +218,7 @@ footer {
       margin-left: -60px;
     }
   }
-  .mt250 {
-    margin-top: 150px;
+  .margin-adjust {
+    margin-top: 150px 0 50px;
   }
 }
