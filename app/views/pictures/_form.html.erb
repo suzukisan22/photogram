@@ -6,9 +6,11 @@
         <%= image_tag("#{@picture.avatar}") %>
       </div>
     <% end %>
-    <%= f.label :画像 %><br>
-    <%= f.file_field :avatar, class: 'form-control' %>
-    <%= f.hidden_field :avatar_cache %>
+    <% if current_page? (new_picture_path) %>
+      <%= f.label :画像 %><br>
+      <%= f.file_field :avatar, class: 'form-control' %>
+      <%= f.hidden_field :avatar_cache %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :comment %><br>
