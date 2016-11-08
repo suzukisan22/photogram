@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'top#index'
 
   resources :pictures
 
@@ -8,6 +7,14 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
 }
+
+# Userログイン時
+  authenticated :user do
+    root :to => "pictures#index", :as => "authenticated_root"
+  end
+
+  # User非ログイン時
+  root "top#index"
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
