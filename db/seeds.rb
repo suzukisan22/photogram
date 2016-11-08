@@ -14,15 +14,17 @@
   avatar = Faker::Avatar.image
   comment = Faker::StarWars.quote
   uid = Faker::Crypto.md5
+  username = Faker::Internet.user_name
   image_path = File.join(Rails.root, "db/fixture/no_image.png")
   User.create!(name: name,
                uid: uid,
+               username: username,
                email: email,
                password: password,
                password_confirmation: password,
                )
   Picture.create!(comment: comment,
                   avatar: File.new(image_path),
-                  user_id: 67 + n
+                  user_id: 91 + n
   )
 end

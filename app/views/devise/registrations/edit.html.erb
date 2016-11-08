@@ -6,6 +6,11 @@
     <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
 
+  <div class="field">
+    <%= f.label :ユーザー名 %><br />
+    <%= f.text_field :username, class: "form-control", placeholder: "ユーザー名" %>
+  </div>
+
   <!-- 名前入力用のフィールドを追加 -->
   <div class="field">
     <%= f.label :名前 %><br />
