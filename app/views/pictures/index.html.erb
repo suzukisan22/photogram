@@ -18,15 +18,10 @@
       <%= picture.comment %>
     </div>
     <div class="pic-action-area">
-<<<<<<< HEAD
       <% if picture.user_id == current_user.id %>
         <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
         <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
-=======
-      <%= link_to '編集', edit_picture_path(picture) %>
-      <%= link_to '削除', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
->>>>>>> 42c9834cd64d7b885570939ec6a6012ee906e90d
     </div>
   </div>
 <% end %>
