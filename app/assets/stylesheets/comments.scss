@@ -1,0 +1,17 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.delete-comment {
+  color: #c7c7c7;
+}
+.delete-comment:hover,
+.delete-comment:focus,
+.delete-comment:active {
+  background:none;
+  text-decoration: none;
+  cursor: pointer;
+}

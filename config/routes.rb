@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  resources :pictures
+  resources :pictures do
+    resources :comments
+  end
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
 }
 
-# Userログイン時
+  # Userログイン時
   authenticated :user do
     root :to => "pictures#index", :as => "authenticated_root"
   end

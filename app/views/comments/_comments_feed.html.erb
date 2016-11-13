@@ -1,0 +1,15 @@
+<% comments.each do |comment| %>
+ <div class="comment-loop">
+   <div class="row">
+     <div class="col-xs-10">
+       <strong><%= comment.user.name %></strong>
+       <%= comment.content %>
+     </div>
+     <div class="col-xs-2 text-right">
+       <% if current_user.id == comment.user_id %>
+         <%= link_to '×', picture_comment_path(picture, comment), class: "delete-comment", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+       <% end %>
+     </div>
+   </div>
+ </div>
+<% end %>

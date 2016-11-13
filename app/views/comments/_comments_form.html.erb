@@ -1,0 +1,5 @@
+<%= form_for([picture,comment], remote: true) do |f| %>
+  <%= f.hidden_field :picture_id %>
+  <%= f.text_area :content, class: 'form-control mb15', id: 'input-comment' %>
+  <%= f.submit 'コメントを投稿する', class: 'btn btn-primary' %>
+<% end %>

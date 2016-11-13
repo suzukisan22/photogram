@@ -17,6 +17,12 @@
     <div class="pic-comment-area">
       <%= picture.comment %>
     </div>
+    <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
+      <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
+    </div>
+    <div id="pic-comment-form" class="pic-comment-area">
+      <%= render partial: 'comments/comments_form', locals: { picture: picture, comment: getCommentOne(picture)} %>
+    </div>
     <div class="pic-action-area">
       <% if picture.user_id == current_user.id %>
         <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
