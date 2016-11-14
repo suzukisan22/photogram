@@ -1,2 +1,2 @@
-$("#pic-all-comments-<%= @comment.picture.id %>").html("<%= j(render 'comments/comments_feed', { comments: @comment.picture.comments, picture: @comment.picture }) %>")
+$("#pic-all-comments-<%= @comment.picture_id %>").html("<%= j(render 'comments/comments_feed', { comments: @comment.picture.comments, picture: @comment.picture }) %>")
 $('#input-comment').val('')

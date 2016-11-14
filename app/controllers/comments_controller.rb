@@ -17,7 +17,9 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+
     respond_to do |format|
+      format.html { redirect_to pictures_path, notice: 'コメントを削除しました' }
       format.js { render :index }
     end
   end
