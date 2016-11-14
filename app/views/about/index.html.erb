@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-1">
+    <div class="row">
+      <div class="col-sm-2 profile-img">
+        <h2><%= profile_img(@user) %></h2>
+      </div>
+      <div class="col-sm-10">
+        <h1>
+          <%= @user.username %>
+          <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
+        </h1>
+        <p><%= @user.name %></p>
+      </div>
+    </div>
+    <div class="picture-area">
+      <%= render 'picture_feed', pictures: @pictures %>
+    </div>
+  </div>
+</div>

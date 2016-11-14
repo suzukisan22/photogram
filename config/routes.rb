@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :pictures do
@@ -16,12 +17,16 @@ Rails.application.routes.draw do
     root :to => "pictures#index", :as => "authenticated_root"
   end
 
-  # User非ログイン時
-  root "top#index"
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
+  get '/:username', to: 'about#index', as: "user_profile"
+
+  # User非ログイン時
+  root "top#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

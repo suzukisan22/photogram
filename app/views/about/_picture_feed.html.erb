@@ -1,0 +1,11 @@
+<% if pictures.blank? %>
+  <div class="nothing text-center">
+    <h3>投稿はまだありません。</h3>
+  </div>
+<% else %>
+  <% pictures.each do |picture| %>
+    <div class="col-sm-4 picture-item">
+      <%= image_tag("#{picture.avatar}") %>
+    </div>
+  <% end %>
+<% end %>

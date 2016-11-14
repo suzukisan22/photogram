@@ -1,33 +1,37 @@
-<p id="notice"><%= notice %></p>
-<% @pictures.each do |picture| %>
-  <div class="pic-area">
-    <div class="pic-user-name">
-      <% @users.each do |user| %>
-        <% if user.id == picture.user_id %>
-          <p class="pic-user-info">
-            <span><%= profile_img(user) %></span>
-            <%= user.username %>
-          </p>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="pic-photo-area">
-      <%= image_tag("#{picture.avatar}") %>
-    </div>
-    <div class="pic-comment-area">
-      <%= picture.comment %>
-    </div>
-    <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
-      <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
-    </div>
-    <div id="pic-comment-form" class="pic-comment-area">
-      <%= render partial: 'comments/comments_form', locals: { picture: picture, comment: getCommentOne(picture)} %>
-    </div>
-    <div class="pic-action-area">
-      <% if picture.user_id == current_user.id %>
-        <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
-        <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </div>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+    <% @pictures.each do |picture| %>
+      <div class="pic-area">
+        <div class="pic-user-name">
+          <% @users.each do |user| %>
+            <% if user.id == picture.user_id %>
+              <p class="pic-user-info">
+                <span><%= profile_img(user) %></span>
+                <%= user.username %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="pic-photo-area">
+          <%= image_tag("#{picture.avatar}") %>
+        </div>
+        <div class="pic-comment-area">
+          <%= picture.comment %>
+        </div>
+        <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
+          <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
+        </div>
+        <div id="pic-comment-form" class="pic-comment-area">
+          <%= render partial: 'comments/comments_form', locals: { picture: picture, comment: getCommentOne(picture)} %>
+        </div>
+        <div class="pic-action-area">
+          <% if picture.user_id == current_user.id %>
+            <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
+            <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

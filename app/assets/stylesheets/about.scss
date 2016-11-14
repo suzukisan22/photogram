@@ -1,0 +1,48 @@
+// Place all the styles related to the About controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-img h2 img {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.edit-profile {
+  background: 0 0;
+  color: #999;
+  border-color: #999;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  font-weight: 600;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  font-size: 21px;
+  padding: 5px;
+}
+
+.edit-profile:hover {
+  background: none;
+  color: #999;
+  text-decoration: none;
+}
+
+.picture-area {
+  margin-top: 60px;
+}
+
+.picture-item img{
+  height: 293px;
+  width : 100%;
+  border: 1px solid #ddd;
+}
+
+.nothing {
+  width: 100%;
+  padding: 50px 0;
+  background-color: #ffffff;
+}
