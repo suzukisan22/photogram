@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.new(
-          name:     auth.extra.raw_info.name,
+          username:     auth.extra.raw_info.name,
           name:     auth.extra.raw_info.name,
           provider: auth.provider,
           uid:      auth.uid,
