@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 10.times do |n|
-  pic_user_id = User.ids
+
+  pic_user_id = 1 + n
   name = Faker::Book.author
   email = Faker::Internet.email
   password = "password"
@@ -25,6 +26,6 @@
                )
   Picture.create!(comment: comment,
                   avatar: File.new(image_path),
-                  user_id: 91 + n
+                  user_id: pic_user_id
   )
 end
