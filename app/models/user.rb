@@ -10,12 +10,13 @@ class User < ActiveRecord::Base
 
   # likesモデルのアソシエーション
   has_many :likes, dependent: :destroy
-  
+
   def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
     unless user
       user = User.new(
+          username: auth.info.nickname,
           name:     auth.info.nickname,
           image_url: auth.info.image,
           provider: auth.provider,
