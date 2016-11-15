@@ -1,0 +1,5 @@
+<% if current_user.likes.find_by(picture_id: picture.id) %>
+  <span class="liking text-center"><%= link_to '', unlike_path(picture), class: 'fa fa-heart liked fa-2x', method: :delete, remote: true %></span>
+<% else %>
+  <span class="not-like text-center"><%= link_to '', like_path(picture), class: 'fa fa-heart-o fa-2x', method: :post, remote: true %></span>
+<% end %>

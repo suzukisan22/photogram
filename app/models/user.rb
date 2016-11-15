@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   # コメントモデルのアソシエーションを設定
   has_many :comments, dependent: :destroy
 
+  # likesモデルのアソシエーション
+  has_many :likes, dependent: :destroy
+  
   def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 

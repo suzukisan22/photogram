@@ -7,10 +7,50 @@ img{
 
 .pic-user-info {
   margin: 0;
+  padding: 10px 24px;
   span img{
     width: 50px;
     height: 50px;
     border: 1px solid #ddd;
     border-radius: 50%;
   }
+}
+
+.pic-changable-area {
+  padding: 10px 24px 20px;
+  .pic-likes-area,
+  .pic-user-name,
+  .pic-action {
+    padding-top: 10px;
+  }
+  .pic-comment-area {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0 20px;
+  }
+}
+
+.liking a.liked,
+.liking a.liked:hover,
+.liking a.liked:visited {
+  text-decoration: none;
+  background: none;
+  color: red;
+  width: 100%;
+}
+
+.not-like a,
+.not-like a:hover,
+.not-like a:visited {
+  text-decoration: none;
+  background: none;
+  color: #ddd;
+  width: 100%;
+}
+
+.liked {
+  color: red;
+}
+
+.liked:hover {
+  color: red;
 }

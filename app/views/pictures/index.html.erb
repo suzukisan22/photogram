@@ -16,22 +16,29 @@
         <div class="pic-photo-area">
           <%= image_tag("#{picture.avatar}") %>
         </div>
-        <div class="pic-comment-area">
-          <%= picture.comment %>
-        </div>
-        <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
-          <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
-        </div>
-        <div id="pic-comment-form" class="pic-comment-area">
-          <%= render partial: 'comments/comments_form', locals: { picture: picture, comment: getCommentOne(picture)} %>
-        </div>
-        <div class="pic-action-area">
-          <% if picture.user_id == current_user.id %>
-            <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
-            <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </div>
-      </div>
+        <div class="pic-changable-area">
+          <div class="pic-likes-area">
+            いいね<span id="like-count-<%= picture.id %>"><%= picture.likes.count %></span>件
+          </div>
+          <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
+            <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
+          </div>
+          <div id="pic-action-<%= picture.id %>" class="pic-action row">
+            <div id="pic-like-<%= picture.id %>" class="col-xs-2 text-cetner">
+              <%= render partial: 'likes/link_like', locals: {picture: picture} %>
+            </div>
+            <div class="col-xs-10">
+              <%= render partial: 'comments/comments_form', locals: { picture: picture, comment: getCommentOne(picture)} %>
+            </div>
+          </div>
+          <div class="pic-action-area">
+            <% if picture.user_id == current_user.id %>
+              <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
+              <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </div>
+        </div><!-- pic-changable-area -->
+      </div><!-- pic-area -->
     <% end %>
   </div>
 </div>

@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
 
 
+  get 'likes/like'
+
+  get 'likes/unlike'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :pictures do
+    member do
+      get :liking_users
+    end
     resources :comments
   end
+
+  post '/like/:picture_id' => 'likes#like', as: 'like'
+  delete '/unlike/:picture_id' => 'likes#unlike', as: 'unlike'
+
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

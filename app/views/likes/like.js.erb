@@ -1,0 +1,2 @@
+$("#pic-like-<%= @picture.id %>").html("<%= j(render 'likes/link_like', { picture: @picture }) %>")
+$("#like-count-<%= @picture.id %>").html('<%= @picture.likes.count %>')
