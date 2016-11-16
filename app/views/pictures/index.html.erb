@@ -7,8 +7,10 @@
           <% @users.each do |user| %>
             <% if user.id == picture.user_id %>
               <p class="pic-user-info">
+                <%= link_to user_profile_path(user.username), class: 'username' do %>
                 <span><%= profile_img(user) %></span>
                 <%= user.username %>
+                <% end %>
               </p>
             <% end %>
           <% end %>
