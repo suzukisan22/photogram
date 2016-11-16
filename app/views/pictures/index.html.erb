@@ -22,6 +22,10 @@
           <div class="pic-likes-area">
             いいね<span id="like-count-<%= picture.id %>"><%= picture.likes.count %></span>件
           </div>
+          <div class="pic-comment-area">
+            <strong><%= picture.user.name %></strong>
+            <%= picture.comment %>
+          </div>
           <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
             <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>
           </div>
