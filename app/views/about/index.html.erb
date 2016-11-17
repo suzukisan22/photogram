@@ -7,8 +7,13 @@
       <div class="col-sm-10">
         <h1>
           <%= @user.username %>
+
           <% if @user.id == current_user.id %>
             <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
+          <% else %>
+            <span id="send-request-<%= @user.id %>" class="follow-area">
+              <%= render 'follow_form', user: @user %>
+            </span>
           <% end %>
         </h1>
         <p><%= @user.name %></p>

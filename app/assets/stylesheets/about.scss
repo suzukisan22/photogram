@@ -46,3 +46,21 @@
   padding: 50px 0;
   background-color: #ffffff;
 }
+
+.new_relationship, .edit_relationship {
+  display: inline;
+}
+
+.follow-btn {
+  border-color: #3897f0;
+  color: #3897f0;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.unfollow-btn {
+  border-radius: 5px;
+  background: #70c050;
+  border-color: #70c050;
+  color: #fff;
+}
