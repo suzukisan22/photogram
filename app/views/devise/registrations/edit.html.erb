@@ -19,6 +19,12 @@
         <%= f.text_field :name, class: "form-control" %>
       </div>
 
+      <div class="field">
+        <%= f.label :公開・非公開 %><br />
+        <label class="mr25"><%= f.radio_button :secret, '0' %>公開</label>
+        <label><%= f.radio_button :secret, '1' %>非公開</label>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>

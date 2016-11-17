@@ -1,11 +1,18 @@
-<% if pictures.blank? %>
+<% if user.secret == 1 && user.id != current_user.id %>
   <div class="nothing text-center">
-    <h3>投稿はまだありません。</h3>
+    <h3>このアカウントは非公開です</h3>
+    <p>このアカウントの写真や動画を見るには、フォローリクエストを送信してください。</p>
   </div>
 <% else %>
-  <% pictures.each do |picture| %>
-    <div class="col-sm-4 picture-item mb25">
-      <%= image_tag("#{picture.avatar}") %>
+  <% if pictures.blank? %>
+    <div class="nothing text-center">
+      <h3>投稿はまだありません。</h3>
     </div>
+  <% else %>
+    <% pictures.each do |picture| %>
+      <div class="col-sm-4 picture-item mb25">
+        <%= image_tag("#{picture.avatar}") %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
