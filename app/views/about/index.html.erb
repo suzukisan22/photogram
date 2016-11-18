@@ -7,7 +7,6 @@
       <div class="col-sm-10">
         <h1>
           <%= @user.username %>
-
           <% if @user.id == current_user.id %>
             <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
           <% else %>
@@ -16,6 +15,11 @@
             </span>
           <% end %>
         </h1>
+        <ul class="profile-area">
+          <li>投稿<strong><%= @user.pictures.count %></strong>件</li>
+          <li>フォローワー<span id="follower-count"><%= @user.followers.count %></span>人</li>
+          <li><strong><%= @user.followed_users.count %></strong>人をフォロー中</li>
+        </ul>
         <p><%= @user.name %></p>
       </div>
     </div>
