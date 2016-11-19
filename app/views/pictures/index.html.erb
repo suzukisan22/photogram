@@ -2,6 +2,7 @@
   <div class="row">
     <p id="notice"><%= notice %></p>
     <% @pictures.each do |picture| %>
+      <% if current_user.following?(picture.user) %>
       <div class="pic-area">
         <div class="pic-user-name">
           <% @users.each do |user| %>
@@ -45,6 +46,7 @@
           </div>
         </div><!-- pic-changable-area -->
       </div><!-- pic-area -->
+      <% end %>
     <% end %>
   </div>
 </div>
