@@ -2,7 +2,7 @@
   <div class="row">
     <p id="notice"><%= notice %></p>
     <% @pictures.each do |picture| %>
-      <% if current_user.following?(picture.user) %>
+      <% if current_user.following?(picture.user) || picture.user.id == current_user.id %>
       <div class="pic-area">
         <div class="pic-user-name">
           <% @users.each do |user| %>
