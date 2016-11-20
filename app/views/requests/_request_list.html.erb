@@ -1,0 +1,6 @@
+<% senders.each do |sender| %>
+  <div class="request-list">
+    <%= sender.name %>
+    <%= link_to '承認', admit_request_path(sender), class: 'admit-btn', method: :delete %>
+  </div>
+<% end %>
