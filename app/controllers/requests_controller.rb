@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_right_user, only: [:show]
 
   def create
     @user = User.find(params[:request][:sender_id])
@@ -16,12 +17,13 @@ class RequestsController < ApplicationController
 
   def admit
     @user = User.find(params[:id])
-    @request = current_user.requests.find_by(recipient_id: current_user.id)
-    binding.pry
-    current_user.unsend(@user)
+    @senders = current_user.get_requests
+    @request = Request.find_by(sender_id: current_user.id, recipient_id: @user.id)
+    @request.destroy
     @user.follow!(current_user)
     respond_to do |format|
-      format.js {}
+      format.html { redirect_to request_path(current_user.id) }
+      format.js { render :admit }
     end
   end
 
@@ -32,5 +34,13 @@ class RequestsController < ApplicationController
       format.js { render :destroy }
     end
   end
+
+  private
+    def is_right_user
+      @user = User.find(params[:id])
+      if current_user.id != @user.id
+        redirect_to pictures_path
+      end
+    end
 
 end
