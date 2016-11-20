@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  # requestテーブルとユーザーのアソシエーションを設定
+  has_many :requests, foreign_key: "recipient_id", dependent: :destroy
+  has_many :reverse_requests, foreign_key: "sender_id", class_name: 'Request', dependent: :destroy
+
+  has_many :send_requests, through: :requests, source: :sender
+  has_many :get_requests, through: :reverse_requests, source: :recipient
+
   def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -71,6 +78,18 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def send_request!(to_user)
+    requests.create!(sender_id: to_user.id)
+  end
+
+  def sending?(to_user)
+    requests.find_by(sender_id: to_user.id)
+  end
+
+  def unsend(to_user)
+    requests.find_by(sender_id: to_user.id).destroy
   end
 
 end

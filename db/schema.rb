@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117121645) do
+ActiveRecord::Schema.define(version: 20161120071324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20161117121645) do
   add_index "relationships", ["followed_id", "follower_id"], name: "index_relationships_on_followed_id_and_follower_id", unique: true, using: :btree
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "admit",        default: 0
+  end
+
+  add_index "requests", ["recipient_id"], name: "index_requests_on_recipient_id", using: :btree
+  add_index "requests", ["sender_id", "recipient_id"], name: "index_requests_on_sender_id_and_recipient_id", unique: true, using: :btree
+  add_index "requests", ["sender_id"], name: "index_requests_on_sender_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

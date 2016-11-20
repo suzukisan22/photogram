@@ -1,0 +1,1 @@
+$("#send-request-<%= @user.id %>").html("<%= escape_javascript(render partial: 'about/request_form', locals: { user: @user } ) %>")

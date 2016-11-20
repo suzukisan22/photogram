@@ -47,7 +47,8 @@
   background-color: #ffffff;
 }
 
-.new_relationship, .edit_relationship {
+.new_relationship, .edit_relationship,
+.new_request, .edit_request {
   display: inline;
 }
 
@@ -56,6 +57,7 @@
   color: #3897f0;
   background-color: transparent;
   border-radius: 5px;
+  font-size: 21px;
 }
 
 .unfollow-btn {
@@ -63,6 +65,15 @@
   background: #70c050;
   border-color: #70c050;
   color: #fff;
+  font-size: 21px;
+}
+
+.unsend-request-btn {
+  background-color: #999;
+  border-radius: 5px;
+  border-color: #999;
+  color: #fff;
+  font-size: 21px;
 }
 
 .profile-area {

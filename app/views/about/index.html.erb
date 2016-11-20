@@ -11,7 +11,11 @@
             <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
           <% else %>
             <span id="send-request-<%= @user.id %>" class="follow-area">
-              <%= render 'follow_form', user: @user %>
+              <% if @user.secret == 1 && !current_user.following?(@user) %>
+                <%= render 'request_form', user: @user %>
+              <% else %>
+                <%= render 'follow_form', user: @user %>
+              <% end %>
             </span>
           <% end %>
         </h1>
@@ -23,6 +27,11 @@
         <p><%= @user.name %></p>
       </div>
     </div>
+    <% if @user.secret == 1 && @user.id == current_user.id%>
+      <div class="request-count">
+        <h4>現在のフォローリクエスト<span><%= @user.get_requests.count %></span></h4>
+      </div>
+    <% end %>
     <div class="picture-area">
       <%= render 'picture_feed', pictures: @pictures, user: @user %>
     </div>
