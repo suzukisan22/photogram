@@ -34,18 +34,17 @@
         </ul>
         <p><%= @user.name %></p>
       </div>
-    </div>
-    <% if @user.secret == 1 && @user.id == current_user.id%>
-      <div class="request-count">
-        <h4>
-          <%= link_to request_path(@user) do %>
-            現在のフォローリクエスト<span><%= @user.get_requests.count %></span>
-          <% end %>
-        </h4>
+    </div><!-- row -->
+    <div class="following-area">
+      <h3>フォローしている人</h3>
+      <% @followings.each do |following| %>
+      <div class="following-list">
+        <%= following.name %>
+        <span id="send-request-<%= following.id %>" class="following-btn">
+          <%= render 'follow_form', user: following %>
+        </span>
       </div>
-    <% end %>
-    <div class="picture-area">
-      <%= render 'picture_feed', pictures: @pictures, user: @user %>
+      <% end %>
     </div>
   </div>
 </div>

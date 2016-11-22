@@ -101,3 +101,31 @@
   margin-left: 15px;
   font-weight: bold;
 }
+
+/* following */
+.following-list {
+  position: relative;
+  background-color: #ffffff;
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  .following-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* following */
+.follower-list {
+  position: relative;
+  background-color: #ffffff;
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  .follower-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}

@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   end
 
   get '/:username', to: 'about#index', as: "user_profile"
+  get '/:username/following', to: 'about#following', as: "following"
+  get '/:username/follower', to: 'about#follower', as: "follower"
 
   # User非ログイン時
   root "top#index"
