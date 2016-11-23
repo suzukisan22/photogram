@@ -11,39 +11,32 @@
             <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
           <% else %>
             <span id="send-request-<%= @user.id %>" class="follow-area">
-              <% if @user.secret == 1 && !current_user.follower?(@user) %>
-                <%= render 'request_form', user: @user %>
+              <% if @user.secret == 1 && !current_user.following?(@user) %>
+                <%= render 'requests/request_form', user: @user %>
               <% else %>
                 <%= render 'follow_form', user: @user %>
               <% end %>
             </span>
           <% end %>
         </h1>
-        <ul class="profile-area">
-          <li>投稿<strong><%= @user.pictures.count %></strong>件</li>
-          <li>
-            <%= link_to follower_path, class: '' do %>
-              フォローワー<span id="follower-count"><%= @user.followers.count %></span>人
-            <% end %>
-          </li>
-          <li>
-            <%= link_to follower_path, class: '' do %>
-              <strong><%= @user.followed_users.count %></strong>人をフォロー中
-            <% end %>
-          </li>
-        </ul>
         <p><%= @user.name %></p>
       </div>
     </div><!-- row -->
     <div class="follower-area">
       <h3>フォローワー</h3>
       <% @followers.each do |follower| %>
-      <div class="follower-list">
-        <%= follower.name %>
-        <span id="send-request-<%= follower.id %>" class="follower-btn">
-          <%= render 'follow_form', user: follower %>
-        </span>
-      </div>
+        <div class="follower-list">
+          <%= link_to user_profile_path(follower.username) do %>
+            <%= follower.name %>
+          <% end %>
+          <span id="send-request-<%= follower.id %>" class="follower-btn">
+            <% if follower.secret == 1 && !current_user.following?(follower) %>
+              <%= render 'requests/request_form', user: follower %>
+            <% else %>
+              <%= render 'follow_form', user: follower %>
+            <% end %>
+          </span>
+        </div>
       <% end %>
     </div>
   </div>

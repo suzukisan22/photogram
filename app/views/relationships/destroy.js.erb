@@ -1,2 +1,3 @@
 $("#send-request-<%= @user.id %>").html("<%= escape_javascript(render partial: 'about/follow_form', locals: { user: @user } ) %>")
 $("#follower-count").html("<%= @user.followers.count %>")
+$("#following-count").html("<%= @user.followed_users.count %>")

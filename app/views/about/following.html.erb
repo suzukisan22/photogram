@@ -12,38 +12,31 @@
           <% else %>
             <span id="send-request-<%= @user.id %>" class="follow-area">
               <% if @user.secret == 1 && !current_user.following?(@user) %>
-                <%= render 'request_form', user: @user %>
+                <%= render 'requests/request_form', user: @user %>
               <% else %>
                 <%= render 'follow_form', user: @user %>
               <% end %>
             </span>
           <% end %>
         </h1>
-        <ul class="profile-area">
-          <li>投稿<strong><%= @user.pictures.count %></strong>件</li>
-          <li>
-            <%= link_to follower_path, class: '' do %>
-              フォローワー<span id="follower-count"><%= @user.followers.count %></span>人
-            <% end %>
-          </li>
-          <li>
-            <%= link_to following_path, class: '' do %>
-              <strong><%= @user.followed_users.count %></strong>人をフォロー中
-            <% end %>
-          </li>
-        </ul>
         <p><%= @user.name %></p>
       </div>
     </div><!-- row -->
     <div class="following-area">
       <h3>フォローしている人</h3>
       <% @followings.each do |following| %>
-      <div class="following-list">
-        <%= following.name %>
-        <span id="send-request-<%= following.id %>" class="following-btn">
-          <%= render 'follow_form', user: following %>
-        </span>
-      </div>
+        <div class="following-list">
+          <%= link_to user_profile_path(following.username) do %>
+            <%= following.name %>
+          <% end %>
+          <span id="send-request-<%= following.id %>" class="following-btn">
+            <% if following.secret == 1 && !current_user.following?(following) %>
+              <%= render 'requests/request_form', user: following %>
+            <% else %>
+              <%= render 'follow_form', user: following %>
+            <% end %>
+          </span>
+        </div>
       <% end %>
     </div>
   </div>

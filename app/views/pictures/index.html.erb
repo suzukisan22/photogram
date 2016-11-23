@@ -24,8 +24,10 @@
             いいね<span id="like-count-<%= picture.id %>"><%= picture.likes.count %></span>件
           </div>
           <div class="pic-user-area">
-            <strong><%= picture.user.name %></strong>
-            <%= picture.comment %>
+            <% if !picture.comment.empty? %>
+              <strong><%= picture.user.name %></strong>
+              <%= picture.comment %>
+            <% end %>
           </div>
           <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
             <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(picture), picture: picture} %>

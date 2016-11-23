@@ -12,7 +12,7 @@
           <% else %>
             <span id="send-request-<%= @user.id %>" class="follow-area">
               <% if @user.secret == 1 && !current_user.following?(@user) %>
-                <%= render 'request_form', user: @user %>
+                <%= render 'requests/request_form', user: @user %>
               <% else %>
                 <%= render 'follow_form', user: @user %>
               <% end %>
@@ -28,7 +28,7 @@
           </li>
           <li>
             <%= link_to following_path, class: '' do %>
-              <strong><%= @user.followed_users.count %></strong>人をフォロー中
+              <span id="following-count"><%= @user.followed_users.count %></span>人をフォロー中
             <% end %>
           </li>
         </ul>
