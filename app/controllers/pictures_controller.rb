@@ -7,6 +7,7 @@ class PicturesController < ApplicationController
   def index
     @pictures = Picture.all.order(created_at: :desc)
     @users = User.all
+    @num = 0
   end
 
   # GET /pictures/1

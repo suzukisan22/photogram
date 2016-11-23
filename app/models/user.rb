@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   # likesモデルのアソシエーション
   has_many :likes, dependent: :destroy
+  has_many :like_notes, through: :likes, source: :picture
 
   # relationshipsとユーザーのアソシエーション
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

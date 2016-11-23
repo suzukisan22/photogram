@@ -20,8 +20,8 @@
           <%= image_tag("#{picture.avatar.url}") %>
         </div>
         <div class="pic-changable-area">
-          <div class="pic-likes-area">
-            いいね<span id="like-count-<%= picture.id %>"><%= picture.likes.count %></span>件
+          <div id="pic-likes-<%= picture.id %>" class="pic-likes-area">
+            <%= render partial: 'picture_like', locals: { picture: picture } %>
           </div>
           <div class="pic-user-area">
             <% if !picture.comment.empty? %>

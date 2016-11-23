@@ -1,0 +1,13 @@
+<% if picture.likes.count >= 10 %>
+  いいね
+  <span id="like-count-<%= picture.id %>">
+    <%= picture.likes.count %>
+  </span>件
+<% else %>
+  <% if picture.liking_users.present? %>
+    <% picture.liking_users.each do |user| %>
+      <%= user.username %>さん
+    <% end %>
+    が「いいね！」しました
+  <% end %>
+<% end %>
