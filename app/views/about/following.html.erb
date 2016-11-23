@@ -29,13 +29,15 @@
           <%= link_to user_profile_path(following.username) do %>
             <%= following.name %>
           <% end %>
-          <span id="send-request-<%= following.id %>" class="following-btn">
-            <% if following.secret == 1 && !current_user.following?(following) %>
-              <%= render 'requests/request_form', user: following %>
-            <% else %>
-              <%= render 'follow_form', user: following %>
-            <% end %>
-          </span>
+          <% if current_user.id != following.id %>
+            <span id="send-request-<%= following.id %>" class="following-btn">
+              <% if following.secret == 1 && !current_user.following?(following) %>
+                <%= render 'requests/request_form', user: following %>
+              <% else %>
+                <%= render 'follow_form', user: following %>
+              <% end %>
+            </span>
+          <% end %>
         </div>
       <% end %>
     </div>
