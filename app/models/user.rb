@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   has_many :send_requests, through: :requests, source: :sender
   has_many :get_requests, through: :reverse_requests, source: :recipient
 
+  scope :or, -> (email, name, username) do
+    where("(users.email = ? OR users.name = ? OR users.username = ?)", email, name, username)
+  end
+
   def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 

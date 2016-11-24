@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/search'
+
+  get 'users/result'
+
   resources :relationships, only: [:create, :destroy]
 
   resources :requests, only: [:create, :show, :destroy] do
@@ -25,6 +29,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
 }
+
+  get 'search', to: 'users#search'
+  post 'result', to: 'users#result'
 
   # Userログイン時
   authenticated :user do

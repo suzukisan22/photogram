@@ -75,3 +75,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
 gem "font-awesome-rails"
+
+gem 'everywhere'
+
+gem "ransack"
