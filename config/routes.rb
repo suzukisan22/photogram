@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/search'
-
-  get 'users/result'
-
   resources :relationships, only: [:create, :destroy]
 
   resources :requests, only: [:create, :show, :destroy] do
@@ -21,6 +17,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :conversations do
+    resources :messages
+  end
+
   post '/like/:picture_id' => 'likes#like', as: 'like'
   delete '/unlike/:picture_id' => 'likes#unlike', as: 'unlike'
 
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
 }
 
-  get 'search', to: 'users#search'
-  post 'result', to: 'users#result'
+  get '/search', to: 'users#search'
+  post '/result', to: 'users#result'
 
   # Userログイン時
   authenticated :user do
