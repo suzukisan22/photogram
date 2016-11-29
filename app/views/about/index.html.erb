@@ -31,11 +31,16 @@
               <span id="following-count"><%= @user.followed_users.count %></span>人をフォロー中
             <% end %>
           </li>
+          <li>
+            <% if @user.id != current_user.id %>
+              <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
+            <% end %>
+          </li>
         </ul>
         <p><%= @user.name %></p>
       </div>
     </div>
-    <% if @user.secret == 1 && @user.id == current_user.id && @user.get_requests.count != 0%>
+    <% if @user.secret == 1 && @user.id == current_user.id && @user.get_requests.count != 0 %>
       <div class="request-count">
         <h4>
           <%= link_to request_path(@user), class: "a-dafault" do %>

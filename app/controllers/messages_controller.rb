@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
     if params[:m]
       @over_ten = false
-      @messages = @conversations.messages
+      @messages = @conversation.messages
     end
 
     if @messages.last
@@ -21,13 +21,14 @@ class MessagesController < ApplicationController
       end
     end
 
+    @user = @conversation.target_user(current_user)
     @message = @conversation.messages.build
   end
 
   def create
     @message = @conversation.messages.build(message_params)
     if @message.save
-      redirect_to conversation_messages_path(@message)
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 
