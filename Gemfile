@@ -79,3 +79,5 @@ gem "font-awesome-rails"
 gem 'everywhere'
 
 gem "ransack"
+
+gem 'rb-readline'

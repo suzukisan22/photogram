@@ -6,7 +6,9 @@
       </div>
       <div class="col-xs-10">
         <h1>
-          <%= @user.name %>
+          <%= link_to user_profile_path(@user.username), class: 'a-default' do %>
+            <%= @user.name %>
+          <% end %>
         </h1>
       </div>
     </div>
@@ -20,7 +22,7 @@
           <div class="item">
             <div class="content">
               <div class="header">
-                <%= profile_img(@user) %>
+                <%= sender_img(message) %>
                 <strong><%= oponent(message).name %></strong>
                 <%= message.message_time %>
               </div>
