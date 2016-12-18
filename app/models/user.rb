@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
   # requestテーブルとユーザーのアソシエーションを設定
-  has_many :requests, foreign_key: "recipient_id", dependent: :destroy
-  has_many :reverse_requests, foreign_key: "sender_id", class_name: 'Request', dependent: :destroy
+  has_many :requests, foreign_key: "sender_id", dependent: :destroy
+  has_many :reverse_requests, foreign_key: "recipient_id", class_name: 'Request', dependent: :destroy
 
-  has_many :send_requests, through: :requests, source: :sender
-  has_many :get_requests, through: :reverse_requests, source: :recipient
+  has_many :receive_users, through: :requests, source: :sender
+  has_many :send_users, through: :reverse_requests, source: :recipient
 
   scope :or, -> (email, name, username) do
     where("(users.email = ? OR users.name = ? OR users.username = ?)", email, name, username)
@@ -77,24 +77,37 @@ class User < ActiveRecord::Base
     relationships.create!(followed_id: other_user.id)
   end
 
+  # フォローしているかどうかを判別
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
 
+  # フォローされているユーザーかを判別
+  def followed?(other_user)
+    reverse_relationships.find_by(follower_id: other_user.id)
+  end
+
+  # フォローをやめる
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
   def send_request!(to_user)
-    requests.create!(sender_id: to_user.id)
+    requests.create!(recipient_id: to_user.id)
   end
 
+  # リクエストを送ったかユーザーか判別
   def sending?(to_user)
-    requests.find_by(sender_id: to_user.id)
+    requests.find_by(recipient_id: to_user.id)
+  end
+
+  # リクエストを受け取ったユーザーか判別
+  def received?(to_user)
+    reverse_requests.find_by(sender_id: to_user.id)
   end
 
   def unsend(to_user)
-    requests.find_by(sender_id: to_user.id).destroy
+    requests.find_by(recipient_id: to_user.id).destroy
   end
 
 end

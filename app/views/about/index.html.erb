@@ -1,56 +1,58 @@
-<div class="row">
-  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-    <div class="row">
-      <div class="col-xs-2 profile-img">
-        <h2><%= profile_img(@user) %></h2>
-      </div>
-      <div class="col-xs-10">
-        <h1>
-          <%= @user.username %>
-          <% if @user.id == current_user.id %>
-            <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
-          <% else %>
-            <span id="send-request-<%= @user.id %>" class="follow-area">
-              <% if @user.secret == 1 && !current_user.following?(@user) %>
-                <%= render 'requests/request_form', user: @user %>
-              <% else %>
-                <%= render 'follow_form', user: @user %>
+<div class="edit-area">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+      <div class="row">
+        <div class="col-xs-2 profile-img">
+          <h2><%= profile_img(@user) %></h2>
+        </div>
+        <div class="col-xs-10">
+          <h1>
+            <%= @user.username %>
+            <% if @user.id == current_user.id %>
+              <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
+            <% else %>
+              <span id="send-request-<%= @user.id %>" class="follow-area">
+                <% if @user.secret == 1 && !current_user.following?(@user) %>
+                  <%= render 'requests/request_form', user: @user %>
+                <% else %>
+                  <%= render 'follow_form', user: @user %>
+                <% end %>
+              </span>
+            <% end %>
+          </h1>
+          <ul class="profile-area">
+            <li>投稿<strong><%= @user.pictures.count %></strong>件</li>
+            <li>
+              <%= link_to follower_path, class: '' do %>
+                フォローワー<span id="follower-count"><%= @user.followers.count %></span>人
               <% end %>
-            </span>
-          <% end %>
-        </h1>
-        <ul class="profile-area">
-          <li>投稿<strong><%= @user.pictures.count %></strong>件</li>
-          <li>
-            <%= link_to follower_path, class: '' do %>
-              フォローワー<span id="follower-count"><%= @user.followers.count %></span>人
-            <% end %>
-          </li>
-          <li>
-            <%= link_to following_path, class: '' do %>
-              <span id="following-count"><%= @user.followed_users.count %></span>人をフォロー中
-            <% end %>
-          </li>
-          <li>
-            <% if @user.id != current_user.id %>
-              <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
-            <% end %>
-          </li>
-        </ul>
-        <p><%= @user.name %></p>
+            </li>
+            <li>
+              <%= link_to following_path, class: '' do %>
+                <span id="following-count"><%= @user.followed_users.count %></span>人をフォロー中
+              <% end %>
+            </li>
+            <li>
+              <% if @user.id != current_user.id %>
+                <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
+              <% end %>
+            </li>
+          </ul>
+          <p><%= @user.name %></p>
+        </div>
       </div>
-    </div>
-    <% if @user.secret == 1 && @user.id == current_user.id && @user.get_requests.count != 0 %>
-      <div class="request-count">
-        <h4>
-          <%= link_to request_path(@user), class: "a-dafault" do %>
-            現在のフォローリクエスト<span><%= @user.get_requests.count %></span>
-          <% end %>
-        </h4>
+      <% if @user.secret == 1 && @user.id == current_user.id && @user.reverse_requests.count != 0 %>
+        <div class="request-count">
+          <h4>
+            <%= link_to request_path(@user), class: "a-dafault" do %>
+              現在のフォローリクエスト<span><%= @user.reverse_requests.count %></span>
+            <% end %>
+          </h4>
+        </div>
+      <% end %>
+      <div class="picture-area">
+        <%= render 'picture_feed', pictures: @pictures, user: @user %>
       </div>
-    <% end %>
-    <div class="picture-area">
-      <%= render 'picture_feed', pictures: @pictures, user: @user %>
     </div>
   </div>
 </div>

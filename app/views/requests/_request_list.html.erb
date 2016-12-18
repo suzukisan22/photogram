@@ -1,6 +1,8 @@
-<% senders.each do |sender| %>
+<% requests.each do |request| %>
   <div class="request-list">
-    <%= sender.name %>
-    <%= link_to '承認', admit_request_path(sender), class: 'admit-btn', method: :delete, data: { confirm: '承認でよろしいですか？'} %>
+    <%= request.sender.name %>
+    <span id="send-request-<%= request.sender.id %>" class="admit-btn-area">
+      <%= render 'request_admit', user: request.sender %>
+    </span>
   </div>
 <% end %>

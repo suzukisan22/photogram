@@ -1,0 +1,9 @@
+<% unless current_user.reverse_requests.find_by(sender_id: user.id).present? %>
+  <span class="followed-line">フォローしました</span>
+<% else %>
+  <%= form_for(current_user.reverse_requests.find_by(sender_id: user.id), url: admit_requests_path, remote: true, class: 'follow-form-area') do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :sender_id %>
+    <%= f.submit "承認", class: "admit-btn" %>
+  <% end %>
+<% end %>

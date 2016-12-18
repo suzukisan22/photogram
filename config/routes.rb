@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :requests, only: [:create, :show, :destroy] do
-    member do
-      delete :admit
+    collection do
+      patch :admit
     end
   end
 
