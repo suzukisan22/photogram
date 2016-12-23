@@ -22,7 +22,7 @@
               <%= fa_icon "camera-retro", id: "top_camera", class: "fa-2x col-sm-3 col-xs-6 text-right" %>
               <h3 class="col-sm-9 col-xs-6 text-left">Photogram</h3>
             <% end %>
-            <%= form_tag('search', method: "get", class: 'search-area') do %>
+            <%= form_tag(search_path, method: "get", class: 'search-area') do %>
               <%= text_field_tag 'q', '', placeholder: '検索' %>
             <% end %>
             <!-- Collect the nav links, forms, and other content for toggling -->

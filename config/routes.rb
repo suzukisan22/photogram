@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
 }
 
-  get '/search', to: 'users#search'
+  get '/search', to: 'user#search'
 
   # Userログイン時
   authenticated :user do

@@ -9,7 +9,11 @@ module ApplicationHelper
     end
     image_tag(img_url, alt: user.name)
   end
-  
+
+  def isActiveTab(for_param)
+    return 'active' if for_param == params[:for]
+  end
+
   def update_with_password(params, *options)
     if provider.blank?
       super
