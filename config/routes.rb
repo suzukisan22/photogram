@@ -33,7 +33,6 @@ Rails.application.routes.draw do
 }
 
   get '/search', to: 'users#search'
-  post '/result', to: 'users#result'
 
   # Userログイン時
   authenticated :user do

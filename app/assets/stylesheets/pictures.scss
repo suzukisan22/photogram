@@ -71,3 +71,17 @@ img{
 .mb25 {
   margin-bottom: 25px;
 }
+
+/* search */
+.search-area {
+  display: inline;
+  position: absolute;
+  top: 20px;
+  margin-left: 15px;
+}
+
+#q {
+  width: 250px;
+  border-radius: 5px;
+  height: 30px;
+}
