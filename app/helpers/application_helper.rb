@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def isActiveTab(for_param)
-    return 'active' if for_param == params[:for]
+    return 'active' if for_param == params[:by]
   end
 
   def update_with_password(params, *options)

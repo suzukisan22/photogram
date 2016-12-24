@@ -1,0 +1,11 @@
+<% if params[:by] == 'user' %>
+  <p class="pic-user-info">
+    <%= link_to user_profile_path(getObject(object)), class: 'username' do %>
+      <span><%= profile_img(object) %></span>
+      <strong><%= getObject(object) %></strong>
+      <%= object.name %>
+    <% end %>
+  </p>
+<% else %>
+  <%= getObject(object) %>
+<% end %>
