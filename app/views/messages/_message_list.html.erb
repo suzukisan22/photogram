@@ -1,0 +1,19 @@
+<% @messages.each do |message| %>
+  <% if message.body %>
+    <div class="item">
+      <div class="content">
+        <div class="header">
+          <%= sender_img(message) %>
+          <strong><%= oponent(message).name %></strong>
+          <%= message.message_time %>
+        </div>
+        <div class="list">
+          <div class="item">
+            <i class="right triangle icon"></i>
+            <%= message.body %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

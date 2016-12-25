@@ -7,5 +7,14 @@
     <% end %>
   </p>
 <% else %>
-  <%= getObject(object) %>
+  <div class="back">
+    <%= getObject(object) %>
+  </div>
+  <div class="front">
+    <p class="mask"></p>
+    <div class="content">
+      <span><%= fa_icon "heart", class: "fa-lg" %>&nbsp;<%= object.likes.count %></span>
+      <%= fa_icon "comment", class: "fa-lg" %>&nbsp;<%= object.comments.count %>
+    </div>
+  </div>
 <% end %>

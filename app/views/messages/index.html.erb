@@ -16,37 +16,16 @@
       <%= link_to '以前のメッセージ', '?m=all' %>
     <% end %>
 
-    <div class="ui segment">
-      <% @messages.each do |message| %>
-        <% if message.body %>
-          <div class="item">
-            <div class="content">
-              <div class="header">
-                <%= sender_img(message) %>
-                <strong><%= oponent(message).name %></strong>
-                <%= message.message_time %>
-              </div>
-              <div class="list">
-                <div class="item">
-                  <i class="right triangle icon"></i>
-                  <%= message.body %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+    <div id="message-list" class="ui segment">
+      <%= render partial: 'message_list', locals: { messages: @messages } %>
     </div>
 
     <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
       <div class="field">
-        <%= f.text_field :body, class: "form-control" %>
+        <%= f.text_field :body, class: "form-control", id: 'input-message', placeholder: 'メッセージをここに記入' %>
       </div>
         <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
       <div>
-      <div class="field">
-        <%= f.submit '送信する' %>
-      </div>
 
     <% end %>
   </div>
