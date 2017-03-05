@@ -7,7 +7,7 @@ class Conversation < ActiveRecord::Base
     has_many :messages, dependent: :destroy
 
     scope :between, -> (sender_id, recipient_id) do
-      where("(conversations.sender_id = ? OR conversations.recipient_id = ?) AND (conversations.sender_id = ? OR conversations.recipient_id = ?)",
+      where("(sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)",
               sender_id, recipient_id, recipient_id, sender_id)
     end
 
