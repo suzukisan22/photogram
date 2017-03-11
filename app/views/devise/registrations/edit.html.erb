@@ -1,11 +1,11 @@
 <div class="col-sm-8 col-sm-offset-2 col-col-xs-10 col-xs-offset-1 edit-area">
   <div class="col-xs-4 edit-option-area">
     <ul class="edit-option">
-      <li class="active">
+      <li class="<%= checkPageParams("default") %>">
         <%= link_to 'プロフィールを編集', edit_user_registration_path(page: "default") %>
       </li>
       <% if @user.provider.blank? %>
-        <li class="not-active">
+        <li class="<%= checkPageParams("pass_edit") %>">
           <%= link_to 'パスワードを編集', edit_user_registration_path(page: "pass_edit") %>
         </li>
       <% end %>
