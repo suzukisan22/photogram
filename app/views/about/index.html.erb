@@ -6,8 +6,8 @@
     <div class="col-xs-10">
       <h1>
         <%= @user.username %>
-        <% if @user.id == current_user.id %>
-          <%= link_to "プロフィールを編集", edit_user_registration_path, class: 'edit-profile' %>
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集", edit_user_registration_path(page: "default"), class: 'edit-profile' %>
         <% else %>
           <span id="send-request-<%= @user.id %>" class="follow-area">
             <% if @user.secret == 1 && !current_user.following?(@user) %>

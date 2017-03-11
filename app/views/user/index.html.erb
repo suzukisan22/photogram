@@ -8,7 +8,7 @@
           <%= user.name %>
         <% end %>
       </p>
-        <% if user.secret != 0 %>
+        <% unless user.secret == 0 %>
           <div class="nothing text-center">
             <h3>このアカウントは非公開です</h3>
             <p>このアカウントの写真や動画を見るには、フォローリクエストを送信してください。</p>
