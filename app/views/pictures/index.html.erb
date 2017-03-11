@@ -2,7 +2,7 @@
   <div class="row">
     <p id="notice"><%= notice %></p>
     <% @pictures.each do |picture| %>
-      <% if current_user.following?(picture.user) || picture.user.id == current_user.id %>
+      <% if current_user.following?(picture.user) || picture.user == current_user %>
       <div class="pic-area">
         <div class="pic-user-name">
           <% @users.each do |user| %>
@@ -24,7 +24,7 @@
             <%= render partial: 'picture_like', locals: { picture: picture } %>
           </div>
           <div class="pic-user-area">
-            <% if !picture.comment.empty? %>
+            <% if picture.comment.present? %>
               <strong><%= picture.user.name %></strong>
               <%= picture.comment %>
             <% end %>

@@ -5,10 +5,14 @@
   </span>件
 <% else %>
   <% if picture.liking_users.present? %>
-    <% picture.liking_users.each do |user| %>
-      <%= link_to user_profile_path(user.username), class: 'a-dafault' do %>
-        <%= user.username %>さん
+    <% if picture.liking_users.count <= 5 %>
+      <% picture.liking_users.each do |user| %>
+        <%= link_to user_profile_path(user.username), class: 'a-dafault' do %>
+          <%= user.username %>さん
+        <% end %>
       <% end %>
+    <% else %>
+      <%= picture.liking_users.count %>人
     <% end %>
     が「いいね！」しました
   <% end %>

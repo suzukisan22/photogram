@@ -1,12 +1,14 @@
 <div class="col-sm-8 col-sm-offset-2 col-col-xs-10 col-xs-offset-1 edit-area">
   <div class="col-xs-4 edit-option-area">
     <ul class="edit-option">
-      <li class="active">
-        <%= link_to 'プロフィールを編集', edit_user_registration_path %>
+      <li class="<%= checkPageParams("default") %>">
+        <%= link_to 'プロフィールを編集', edit_user_registration_path(page: "default") %>
       </li>
-      <li class="not-active">
-        <%= link_to 'パスワードを編集', edit_user_registration_path %>
-      </li>
+      <% if @user.provider.blank? %>
+        <li class="<%= checkPageParams("pass_edit") %>">
+          <%= link_to 'パスワードを編集', edit_user_registration_path(page: "pass_edit") %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="col-xs-8 edit-input-area">
@@ -20,71 +22,57 @@
     </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_messages! %>
-      <div class="field">
-        <%= f.label :メールアドレス %><br />
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
-      </div>
+      <% if params[:page] == "default" %>
+        <div class="field">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :ユーザー名 %><br />
-        <%= f.text_field :username, class: "form-control", placeholder: "ユーザー名" %>
-      </div>
+        <div class="field">
+          <%= f.label :ユーザー名 %><br />
+          <%= f.text_field :username, class: "form-control", placeholder: "ユーザー名" %>
+        </div>
 
-      <!-- 名前入力用のフィールドを追加 -->
-      <div class="field">
-        <%= f.label :名前 %><br />
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+        <!-- 名前入力用のフィールドを追加 -->
+        <div class="field">
+          <%= f.label :名前 %><br />
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :公開・非公開 %><br />
-        <label class="mr25"><%= f.radio_button :secret, '0' %>公開</label>
-        <label><%= f.radio_button :secret, '1' %>非公開</label>
-      </div>
+        <div class="field row">
+          <div class="col-xs-2">
+            <%= profile_img(@user) if profile_img(@user) %>
+          </div>
+          <div class="col-xs-10">
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+        </div>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
+        <div class="field">
+          <%= f.label :公開・非公開 %><br />
+          <label class="mr25"><%= f.radio_button :secret, '0' %>公開</label>
+          <label><%= f.radio_button :secret, '1' %>非公開</label>
+        </div>
 
-      <% if @user.provider.blank? %>
+      <% else %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-        </div>
+        <% if @user.provider.blank? %>
+          <%= render partial: 'pass_edit', locals: { f: f } %>
+        <% end %>
 
       <% end %>
 
-      <div class="field row">
-        <div class="col-xs-2">
-          <%= profile_img(@user) if profile_img(@user) %>
+      <% if @user.provider.blank? %>
+        <div class="actions">
+          <%= f.submit "更新", class: "btn btn-primary btn-block" %>
         </div>
-        <div class="col-xs-10">
-          <%= f.file_field :avatar %>
-          <%= f.hidden_field :avatar_cache %>
-        </div>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "更新", class: "btn btn-primary btn-block" %>
-      </div>
+      <% end %>
     <% end %>
-    <h3 class="cl-account">Cancel my account</h3>
-
     <p><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-block' %></p>
 
     <div class="back text-right">
