@@ -5,16 +5,12 @@
       <% if current_user.following?(picture.user) || picture.user == current_user %>
       <div class="pic-area">
         <div class="pic-user-name">
-          <% @users.each do |user| %>
-            <% if user.id == picture.user_id %>
-              <p class="pic-user-info">
-                <%= link_to user_profile_path(user.username), class: 'username' do %>
-                  <span><%= profile_img(user) %></span>
-                  <%= user.username %>
-                <% end %>
-              </p>
+          <p class="pic-user-info">
+            <%= link_to user_profile_path(picture.user.username), class: 'username' do %>
+              <span><%= profile_img(picture.user) %></span>
+              <%= picture.user.username %>
             <% end %>
-          <% end %>
+          </p>
         </div>
         <div class="pic-photo-area">
           <%= image_tag("#{picture.avatar.url}") %>
@@ -41,7 +37,7 @@
             </div>
           </div>
           <div class="pic-action-area">
-            <% if picture.user_id == current_user.id %>
+            <% if picture.user == current_user %>
               <%= link_to '', edit_picture_path(picture), class: 'fa fa-pencil-square-o fa-2x' %>
               <%= link_to '', picture, class: 'fa fa-trash-o fa-2x', method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>

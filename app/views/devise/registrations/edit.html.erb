@@ -65,8 +65,13 @@
           <%= render partial: 'pass_edit', locals: { f: f } %>
         <% end %>
 
-      <% end %>
 
+
+      <% end %>
+        <div class="field">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+        </div>
       <% if @user.provider.blank? %>
         <div class="actions">
           <%= f.submit "更新", class: "btn btn-primary btn-block" %>

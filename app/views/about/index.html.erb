@@ -31,7 +31,7 @@
           <% end %>
         </li>
         <li>
-          <% if @user.id != current_user.id %>
+          <% unless @user == current_user %>
             <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
           <% end %>
         </li>
@@ -39,7 +39,7 @@
       <p><%= @user.name %></p>
     </div>
   </div>
-  <% if @user.secret == 1 && @user.id == current_user.id && @user.reverse_requests.count != 0 %>
+  <% if @user.secret == 1 && @user == current_user && @user.reverse_requests.count != 0 %>
     <div class="request-count">
       <h4>
         <%= link_to request_path(@user), class: "a-dafault" do %>
