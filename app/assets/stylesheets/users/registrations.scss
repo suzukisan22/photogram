@@ -18,8 +18,15 @@
     margin: 0;
     padding: 0;
     li{
-      padding: 20px;
       border-bottom: 1px solid #ddd;
+      a {
+        padding: 20px;
+        display: block;
+      }
+      a:hover {
+        background: none;
+        color:  #000;
+      }
     }
     li.active {
       border-left: 5px solid #000000;

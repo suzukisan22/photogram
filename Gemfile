@@ -81,3 +81,5 @@ gem 'everywhere'
 gem "ransack"
 
 gem 'rb-readline'
+
+gem 'annotate'
