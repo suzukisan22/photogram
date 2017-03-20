@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   #変数PERMISSIBLE_ATTRIBUTESに配列[:name]を代入
-  PERMISSIBLE_ATTRIBUTES = %i(username name avatar avatar_cache secret)
+  PERMISSIBLE_ATTRIBUTES = %i(username name avatar avatar_cache secret introduction)
 
   @smth =
 
