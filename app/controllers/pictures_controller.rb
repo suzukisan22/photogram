@@ -13,7 +13,6 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    redirect_to pictures_path
   end
 
   # GET /pictures/new

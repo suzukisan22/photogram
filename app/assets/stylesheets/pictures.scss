@@ -97,3 +97,35 @@ img{
   border-radius: 5px;
   height: 30px;
 }
+
+/* show */
+.photo-detail {
+  background-color: #ffffff;
+  position: relative;
+  .photo-area{
+    padding: 0px;
+  }
+}
+
+.pic-user-photo {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 15px;
+  span img{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+  }
+}
+
+.pic-self-comment,
+.pic-detail-comments {
+  margin-bottom: 15px;
+  word-wrap: break-word;
+}
+
+.comment-loop {
+  margin-bottom: 7px;
+}

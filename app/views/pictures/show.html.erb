@@ -1,9 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @picture.comment %>
-</p>
-
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<div class="photo-detail col-sm-10 col-sm-offset-1 col-xs-12">
+  <div class="row">
+    <div class="photo-area col-sm-6">
+      <%= image_tag("#{@picture.avatar}") %>
+    </div>
+    <div class="col-sm-6 user-area">
+      <div class="pic-user-photo">
+        <%= link_to user_profile_path(@picture.user.username), class: 'username' do %>
+          <span><%= profile_img(@picture.user) %></span>
+          <%= @picture.user.username %>
+        <% end %>
+      </div>
+      <div class="pic-self-comment">
+        <%= @picture.comment %>
+      </div>
+      <div id="pic-all-comments-<%= @picture.id %>" class="pic-detail-comments">
+        <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(@picture), picture: @picture} %>
+      </div>
+      <div id="pic-action-<%= @picture.id %>" class="pic-detail-action row">
+        <div id="pic-like-<%= @picture.id %>" class="col-xs-2 text-center">
+          <%= render partial: 'likes/link_like', locals: {picture: @picture} %>
+        </div>
+        <div class="col-xs-10">
+          <%= render partial: 'comments/comments_form', locals: { picture: @picture, comment: getCommentOne(@picture)} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
