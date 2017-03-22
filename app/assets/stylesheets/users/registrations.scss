@@ -48,4 +48,14 @@
   .edit-user-area {
     margin-bottom: 30px;
   }
+  .user-photo {
+    margin: 0;
+    padding: 10px;
+    span img{
+      width: 60px;
+      height: 60px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+    }
+  }
 }

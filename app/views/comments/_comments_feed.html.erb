@@ -2,7 +2,9 @@
  <div class="comment-loop">
    <div class="row">
      <div class="col-xs-10">
-       <strong><%= comment.user.name %></strong>
+       <%= link_to user_profile_path(comment.user.username), class: 'username' do %>
+          <strong><%= comment.user.name %></strong>
+       <% end %>
        <%= comment.content %>
      </div>
      <div class="col-xs-2 text-right">

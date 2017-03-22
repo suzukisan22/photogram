@@ -17,7 +17,9 @@
           <div class="row">
             <% user.pictures.limit(3).each do |picture| %>
               <div class="col-sm-4">
-                <%= image_tag("#{picture.avatar.url}") %>
+                <%= link_to picture_path(picture, username: user.username) do %>
+                  <%= image_tag("#{picture.avatar.url}") %>
+                <% end %>
               </div>
             <% end %>
           </div>

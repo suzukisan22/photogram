@@ -10,7 +10,11 @@
           <%= @picture.user.username %>
         <% end %>
       </div>
+      <div id="pic-likes-<%= @picture.id %>" class="pic-likes">
+        <%= render partial: 'picture_like', locals: { picture: @picture } %>
+      </div>
       <div class="pic-self-comment">
+        <strong><%= @picture.user.name %></strong>
         <%= @picture.comment %>
       </div>
       <div id="pic-all-comments-<%= @picture.id %>" class="pic-detail-comments">
