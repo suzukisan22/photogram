@@ -104,6 +104,9 @@ img{
   position: relative;
   .photo-area{
     padding: 0px;
+    img {
+      width: 100%;
+    }
   }
 }
 
