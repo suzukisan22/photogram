@@ -83,3 +83,5 @@ gem "ransack"
 gem 'rb-readline'
 
 gem 'annotate'
+
+gem 'acts-as-taggable-on', '~> 3.4'
