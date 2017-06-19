@@ -15,7 +15,7 @@ $("#photo_comment").each(function(){
 function getTags(elm){
   var tags = elm;
   return function(){
-    if(tags.value.match(/#/)) {
+    if(tags.value.match(/#/) && tags.value.length > 1) {
       console.log(elm.value)
     }
   }
