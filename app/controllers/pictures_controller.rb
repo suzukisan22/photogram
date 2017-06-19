@@ -2,16 +2,13 @@ class PicturesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
-  # GET /pictures
-  # GET /pictures.json
+
   def index
     @pictures = Picture.all.order(created_at: :desc)
     @users = User.all
     @num = 0
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
   end
 

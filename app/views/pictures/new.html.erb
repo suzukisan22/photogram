@@ -15,11 +15,12 @@ $("#photo_comment").each(function(){
 
 function getTags(elm){
   var tags = elm;
-  var v, old = elm.value;
   return function(){
     if(tags.value.match(/#/)) {
       var slush = /#|¥s/;
       var tag = tags.value.split(slush);
+      var tag_last = tag[tag.length - 1];
+      searchTag(tag_last);
       $("#debug").text(tag[tag.length - 1]);
     }
   }
