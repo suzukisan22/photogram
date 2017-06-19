@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+<div id="debug"></div>
 <script type="text/javascript">
 $("#photo_comment").each(function(){
   $(this).bind('keyup', getTags(this));
@@ -14,9 +15,12 @@ $("#photo_comment").each(function(){
 
 function getTags(elm){
   var tags = elm;
+  var v, old = elm.value;
   return function(){
-    if(tags.value.match(/#/) && tags.value.length > 1) {
-      console.log(elm.value)
+    if(tags.value.match(/#/)) {
+      var slush = /#|¥s/;
+      var tag = tags.value.split(slush);
+      $("#debug").text(tag[tag.length - 1]);
     }
   }
 }
