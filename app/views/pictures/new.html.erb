@@ -20,7 +20,6 @@ function getTags(elm){
       var slush = /#|¥s/;
       var tag = tags.value.split(slush);
       var tag_last = tag[tag.length - 1];
-      searchTag(tag_last);
       $("#debug").text(tag[tag.length - 1]);
     }
   }

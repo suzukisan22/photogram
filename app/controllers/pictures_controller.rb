@@ -25,7 +25,17 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
+    if @picture.comment.include?("#")
+      aaa = @picture.comment.split(" ")
+      tags = Array.new
+      ct = 0
+      while ct < aaa.length do
+        tags[ct] = aaa[ct].gsub("#", "") if aaa[ct].include?("#")
+        ct += 1
+      end
+    end
     @picture.user_id = current_user.id
+    @picture.tag_list.add(tags)
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: '投稿の保存に成功しました' }
