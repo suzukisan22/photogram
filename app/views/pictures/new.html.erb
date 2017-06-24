@@ -7,3 +7,21 @@
     </div>
   </div>
 </div>
+<div id="debug"></div>
+<script type="text/javascript">
+$("#photo_comment").each(function(){
+  $(this).bind('keyup', getTags(this));
+});
+
+function getTags(elm){
+  var tags = elm;
+  return function(){
+    if(tags.value.match(/#/)) {
+      var slush = /#|¥s/;
+      var tag = tags.value.split(slush);
+      var tag_last = tag[tag.length - 1];
+      $("#debug").text(tag[tag.length - 1]);
+    }
+  }
+}
+</script>

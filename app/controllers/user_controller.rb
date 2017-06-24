@@ -7,9 +7,9 @@ class UserController < ApplicationController
 
   def search
     if params[:by] == 'user'
-      @objects = User.where("username like '%" + params[:q] + "%'")
+      @objects = User.where("username like ?", params[:q])
     else
-      @objects = Picture.where("comment like '%" + params[:q] + "%'")
+      @objects = Picture.where("comment like ?", params[:q])
     end
   end
 end

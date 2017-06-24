@@ -6,6 +6,9 @@
     <li class="<%= isActiveTab('picture') %>">
       <%= link_to 'Pictures', search_path(by: 'picture', q: params[:q]) %>
     </li>
+    <li class="<%= isActiveTab('tag') %>">
+      <%= link_to 'Tags', search_path(by: 'tag', q: params[:q]) %>
+    </li>
   </ul>
   <% @objects.each do |object| %>
     <div class="col-sm-4 object-area">

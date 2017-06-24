@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tags, only: [:index]
+
   resources :user, only: [:index]
 
   resources :relationships, only: [:create, :destroy]
