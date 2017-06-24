@@ -1,0 +1,10 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+<h2>Tags</h2>
+<% @tags.each do |tag| %>
+  <div class="col-md-3 col-sm-6">
+    <%= link_to root_path(name: tag.name) do %>
+      <p class="label label-primary"><%= tag.name %></p>
+    <% end %>
+  </div>
+<% end %>
+</div>
