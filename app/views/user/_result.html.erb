@@ -6,7 +6,7 @@
       <%= object.name %>
     <% end %>
   </p>
-<% else %>
+<% elsif params[:by] == 'picture'  %>
   <div class="back">
     <%= getObject(object) %>
   </div>
