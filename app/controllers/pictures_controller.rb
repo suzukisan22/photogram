@@ -26,13 +26,13 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     if @picture.comment.include?("#")
-      aaa = @picture.comment.split(" ")
+      tag_comments = @picture.comment.split(" ")
       tags = Array.new
       ct = 0
-      while ct < aaa.length do
-        tags[ct] = aaa[ct].gsub("#", "") if aaa[ct].include?("#")
-        ct += 1
-      end
+
+      tag_comments.each{|comment|
+        tags.push(comment.gsub("#", "")) if comment.include?("#")
+      }
     end
     @picture.user_id = current_user.id
     @picture.tag_list.add(tags)
