@@ -25,11 +25,17 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
+    # ハッシュタグを別テーブルに登録
     if @picture.comment.include?("#")
+      # スペースが入っている場合は登録しない
       tag_comments = @picture.comment.split(" ")
       tags = Array.new
       tag_comments.each{|comment|
-        tags.push(comment.gsub("#", "")) if comment.include?("#")
+        # ハッシュタグがふくまれているもの
+        if comment.include?("#")
+          tag = comment.split("#")
+          tags.push(tag)
+        end
       }
     end
     @picture.user_id = current_user.id
