@@ -28,8 +28,6 @@ class PicturesController < ApplicationController
     if @picture.comment.include?("#")
       tag_comments = @picture.comment.split(" ")
       tags = Array.new
-      ct = 0
-
       tag_comments.each{|comment|
         tags.push(comment.gsub("#", "")) if comment.include?("#")
       }
