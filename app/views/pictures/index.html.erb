@@ -67,11 +67,11 @@ $(function(){
               // console.log(tag);
               tag.forEach(function(val_tag, index_tag, ar_tag){
                 // console.log(val_tag);
-                comp_plural = "<a href='#'>#" + val_tag + "</a>";
+                comp_plural = "<a href='/search?by=picture&q=" + val_tag + "'>#" + val_tag + "</a>";
                 html.push(comp_plural);
               });
             } else {
-              comp = "<a href='#'>#" + tag + "</a>";
+              comp = "<a href='/search?by=picture&q=" + tag + "'>#" + tag + "</a>";
               html.push(comp);
             }
           } else {
@@ -81,10 +81,5 @@ $(function(){
       $("#comment-feed-" + <%= picture.id %>).html(html);
     }
   <% end %>
-  // }
 });
-
-var counter = function(str,seq){
-    return str.split(seq).length - 1;
-}
 </script>
