@@ -15,7 +15,7 @@
       </div>
       <div class="pic-self-comment">
         <strong><%= @picture.user.name %></strong>
-        <%= @picture.comment %>
+        <span id="comment-feed-<%= @picture.id %>"><%= @picture.comment %></span>
       </div>
       <div id="pic-all-comments-<%= @picture.id %>" class="pic-detail-comments">
         <%= render partial: 'comments/comments_feed', locals: {comments: getCommentAll(@picture), picture: @picture} %>
@@ -31,3 +31,38 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$(function(){
+    var comment = $("#comment-feed-" + <%= @picture.id %>).text();
+    var html = [];
+    var comp = [];
+    var comp_plural = [];
+    var comp_normal = [];
+    if(comment.match(/#/)) {
+        // スペースと改行で分割
+        var tag_by_space = comment.split(/\s|\n/);
+        tag_by_space.forEach(function(val, index, ar){
+          if(val.match(/#/)) {
+            // タグがある場合はタグで分割(スペースがない場合)
+            var tag = val.split("#");
+            if (tag.length > 1) {
+              // 分割して複数ある場合
+              tag.shift();
+              tag.forEach(function(val_tag, index_tag, ar_tag){
+                comp_plural = "<a href='/search?by=picture&q=" + val_tag + "'>#" + val_tag + "</a>";
+                html.push(comp_plural);
+              });
+            } else {
+              // 1つしかない場合
+              comp = "<a href='/search?by=picture&q=" + tag + "'>#" + tag + "</a>";
+              html.push(comp);
+            }
+          } else {
+            // タグがない場合
+            html.push(" " + val);
+          }
+        });
+      $("#comment-feed-" + <%= @picture.id %>).html(html);
+    }
+});
+</script>

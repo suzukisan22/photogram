@@ -57,24 +57,26 @@ $(function(){
     var comp_plural = [];
     var comp_normal = [];
     if(comment.match(/#/)) {
+        // スペースと改行で分割
         var tag_by_space = comment.split(/\s|\n/);
-        console.log(tag_by_space);
         tag_by_space.forEach(function(val, index, ar){
           if(val.match(/#/)) {
+            // タグがある場合はタグで分割(スペースがない場合)
             var tag = val.split("#");
             if (tag.length > 1) {
+              // 分割して複数ある場合
               tag.shift();
-              // console.log(tag);
               tag.forEach(function(val_tag, index_tag, ar_tag){
-                // console.log(val_tag);
                 comp_plural = "<a href='/search?by=picture&q=" + val_tag + "'>#" + val_tag + "</a>";
                 html.push(comp_plural);
               });
             } else {
+              // 1つしかない場合
               comp = "<a href='/search?by=picture&q=" + tag + "'>#" + tag + "</a>";
               html.push(comp);
             }
           } else {
+            // タグがない場合
             html.push(" " + val);
           }
         });
