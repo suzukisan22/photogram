@@ -8,7 +8,9 @@
   </p>
 <% elsif params[:by] == 'picture'  %>
   <div class="back">
-    <%= getObject(object) %>
+    <%= link_to picture_path(object.id), class: 'username' do %>
+      <%= getObject(object) %>
+    <% end %>
   </div>
   <div class="front">
     <p class="mask"></p>
