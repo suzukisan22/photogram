@@ -22,7 +22,7 @@
           <div class="pic-user-area">
             <% if picture.comment.present? %>
               <strong><%= picture.user.name %></strong>
-              <%= picture.comment %>
+              <span id="comment-feed-<%= picture.id %>"><%= picture.comment %></span>
             <% end %>
           </div>
           <div id="pic-all-comments-<%= picture.id %>" class="pic-comment-area">
@@ -48,3 +48,43 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+$(function(){
+  <% @pictures.each do |picture| %>
+    var comment = $("#comment-feed-" + <%= picture.id %>).text();
+    var html = [];
+    var comp = [];
+    var comp_plural = [];
+    var comp_normal = [];
+    if(comment.match(/#/)) {
+        var tag_by_space = comment.split(/\s|\n/);
+        console.log(tag_by_space);
+        tag_by_space.forEach(function(val, index, ar){
+          if(val.match(/#/)) {
+            var tag = val.split("#");
+            if (tag.length > 1) {
+              tag.shift();
+              // console.log(tag);
+              tag.forEach(function(val_tag, index_tag, ar_tag){
+                // console.log(val_tag);
+                comp_plural = "<a href='#'>#" + val_tag + "</a>";
+                html.push(comp_plural);
+              });
+            } else {
+              comp = "<a href='#'>#" + tag + "</a>";
+              html.push(comp);
+            }
+          } else {
+            html.push(" " + val);
+          }
+        });
+      $("#comment-feed-" + <%= picture.id %>).html(html);
+    }
+  <% end %>
+  // }
+});
+
+var counter = function(str,seq){
+    return str.split(seq).length - 1;
+}
+</script>
