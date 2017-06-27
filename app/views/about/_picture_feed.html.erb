@@ -11,7 +11,7 @@
   <% else %>
     <% pictures.each do |picture| %>
       <div class="col-sm-4 picture-item mb25">
-        <%= link_to picture_path(picture, username: user.username) do %>
+        <%= link_to picture_path(picture, username: user.username), class: "no_border" do %>
           <%= image_tag("#{picture.avatar}") %>
         <% end %>
       </div>

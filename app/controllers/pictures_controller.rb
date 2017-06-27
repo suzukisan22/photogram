@@ -25,21 +25,8 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
-    # ハッシュタグを別テーブルに登録
-    if @picture.comment.include?("#")
-      # スペースが入っている場合は登録しない
-      tag_comments = @picture.comment.split(" ")
-      tags = Array.new
-      tag_comments.each{|comment|
-        # ハッシュタグがふくまれているもの
-        if comment.include?("#")
-          tag = comment.split("#")
-          tags.push(tag)
-        end
-      }
-    end
+    register_tag(@picture)
     @picture.user_id = current_user.id
-    @picture.tag_list.add(tags)
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: '投稿の保存に成功しました' }
@@ -54,6 +41,8 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
   def update
+    # ハッシュタグを別テーブルに登録
+    register_tag(@picture)
     respond_to do |format|
       if @picture.update(picture_params)
         format.html { redirect_to @picture, notice: '投稿の更新に成功しました' }
@@ -84,5 +73,22 @@ class PicturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:comment, :avatar)
+    end
+
+    def register_tag(picture)
+      # ハッシュタグを別テーブルに登録
+      if picture.comment.include?("#")
+        # スペースが入っている場合は登録しない
+        tag_comments = picture.comment.split(" ")
+        tags = Array.new
+        tag_comments.each{|comment|
+          # ハッシュタグがふくまれているもの
+          if comment.include?("#")
+            tag = comment.split("#")
+            tags.push(tag)
+          end
+        }
+      end
+      picture.tag_list.add(tags)
     end
 end
